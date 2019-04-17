@@ -13,21 +13,21 @@ def write_msg(rand_int, user_id, message):
     vk.method('messages.send', {'user_id': user_id, 'message': message, 'random_id': rand_int})
  
  
-# API-ключ
+# API-ГЄГ«ГѕГ·
 token = "b38a2e1d74f3b0a0007740ac5205ee9d0738b9380695f916e38da6216ffd5aaefbbe1fc206cda8f6d91f0"
  
-# Авторизуемся как сообщество
+# ГЂГўГІГ®Г°ГЁГ§ГіГҐГ¬Г±Гї ГЄГ ГЄ Г±Г®Г®ГЎГ№ГҐГ±ГІГўГ®
 vk = vk_api.VkApi(token=token)
  
 longpoll = VkLongPoll(vk)
-print("Бот запущен")
+print("ГЃГ®ГІ Г§Г ГЇГіГ№ГҐГ­")
 
-# Основной цикл
+# ГЋГ±Г­Г®ГўГ­Г®Г© Г¶ГЁГЄГ«
 while True:
     time.sleep(5)
     for event in longpoll.listen():
  
-        # Если пришло новое сообщение
+        # Г…Г±Г«ГЁ ГЇГ°ГЁГёГ«Г® Г­Г®ГўГ®ГҐ Г±Г®Г®ГЎГ№ГҐГ­ГЁГҐ
         if event.type == VkEventType.MESSAGE_NEW:
  
             if event.to_me:
@@ -39,18 +39,18 @@ while True:
                 chat_id = chat_id['items']
                 print(chat_id)
 
-                # Каменная логика ответа
+                # ГЉГ Г¬ГҐГ­Г­Г Гї Г«Г®ГЈГЁГЄГ  Г®ГІГўГҐГІГ 
                 for check in request:
                    #id = vk.method('messages.getConversations')
                    #id = id['items'][0]['last_message']['from_id']
                    #print(id)'
-                    if request == "привет":
-                        write_msg(randint, event.user_id, "Привет")
-                    elif request == "пока":
-                        write_msg(randint, event.user_id, "Пока :(")
-                    if request == "дай замены":
-                        write_msg(randint, event.user_id, "вот держи: https://vk.com/doc-111025026_498834322")
-                    elif request == "команды":
-                        write_msg(randint, event.user_id, "Вот что я умею: Привет Пока Дай замены")                   
+                    if request == "РїСЂРёРІРµС‚":
+                        write_msg(randint, event.user_id, "РџСЂРёРІРµС‚")
+                    elif request == "РїРѕРєР°":
+                        write_msg(randint, event.user_id, "РџРѕРєР° :(")
+                    if request == "РґР°Р№ Р·Р°РјРµРЅС‹":
+                        write_msg(randint, event.user_id, "РІРѕС‚ РґРµСЂР¶Рё: https://vk.com/doc-111025026_498834322")
+                    elif request == "РєРѕРјР°РЅРґС‹":
+                        write_msg(randint, event.user_id, "Р’РѕС‚ С‡С‚Рѕ СЏ СѓРјРµСЋ: РџСЂРёРІРµС‚ РџРѕРєР° Р”Р°Р№ Р·Р°РјРµРЅС‹")                   
                     else:
-                        write_msg(randint, event.user_id, "Не понял...")
+                        write_msg(randint, event.user_id, "РќРµ РїРѕРЅСЏР»...")
